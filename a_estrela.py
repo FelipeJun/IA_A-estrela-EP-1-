@@ -15,6 +15,8 @@ def a_estrela(estado_inicial, testar_objetivo, gerar_sucessores, heuristica, cus
     if(testar_objetivo(estado_atual,len(estado_atual))):
       return no_atual
     
+    print(estado_atual)
+    print("\n")
     # verifico os nos filhos e os adiciono na fila
     # função sucessores define os estados seguintes e adiciona os nós seguintes
     estados_vertices_sucessores = gerar_sucessores(estado_atual)

@@ -7,7 +7,7 @@ from a_estrela import a_estrela
 class Jogo:
 
     def testar_objetivo(self,map,array_size):
-        return map[array_size - 1] == "0"
+        return map[array_size - 1] == 0
 
     # Função que gera os sucessores válidos 
     # a partir de um estado válido
@@ -38,7 +38,7 @@ class Jogo:
             sucessor = list(estado_atual)
             sucessor[posicao] = -2
             sucessor[posicao - 1] = 0
-            return (tuple(sucessor), "⬅️",posicao,(posicao - 1))
+            return (tuple(sucessor), "⬅️",estado_atual[posicao],estado_atual[(posicao - 1)])
 
     def _cima(self, posicao, estado_atual):
         # movimento para cima
@@ -55,7 +55,7 @@ class Jogo:
             sucesso = list(estado_atual)
             sucesso[posicao] = -2
             sucesso[posicao - 3] = 0
-            return (tuple(sucesso), "⬆️",posicao,(posicao - 3))
+            return (tuple(sucesso), "⬆️",estado_atual[posicao],estado_atual[(posicao - 3)])
 
     def _baixo(self, posicao, estado_atual):
         # movimento para baixo
@@ -77,7 +77,7 @@ class Jogo:
             sucessor = list(estado_atual)
             sucessor[posicao] = -2
             sucessor[posicao + 3] = 0
-            return (tuple(sucessor), "⬇️",posicao,(posicao + 3))
+            return (tuple(sucessor), "⬇️",estado_atual[posicao],estado_atual[(posicao + 3)])
 
     def _direita(self, posicao, estado_atual):
     # movimento para direita
@@ -94,7 +94,7 @@ class Jogo:
             sucessor = list(estado_atual)
             sucessor[posicao] = -2
             sucessor[posicao + 1] = 0
-            return (tuple(sucessor), "➡️",posicao,(posicao + 1))
+            return (tuple(sucessor), "➡️",estado_atual[posicao],estado_atual[(posicao + 1)])
 
     # Heurística 2: Distância para o resultado espero
     # Heurística adminissível, pois, sempre o resultado chega mais perto
@@ -128,11 +128,11 @@ if __name__ == "__main__":
 
     map_matrix = np.reshape(map, (M, N))
     map_matrixValues = np.reshape(map_values, (M, N))
-
+    print(map_matrix)
+    print(map_matrixValues)
     no_solucao = a_estrela(map_values, 
                             g.testar_objetivo, 
                             g.gerar_sucessores, 
                             g.heuristica2,
                             g.custo)
-    print(map_matrix)
-    print(map_matrixValues)
+    print(no_solucao)
