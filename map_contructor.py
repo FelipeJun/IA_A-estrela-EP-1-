@@ -1,12 +1,6 @@
 import random as rand
 import math
 import numpy as np
-def check_dictionary(dictionary,val):
-    if val in dictionary.keys():
-        return (dictionary.get(val))
-    else:
-        return False
-
 def create_map(array_size,dictionary):
     map = [None] * array_size
     key_list = list(dictionary.keys())
@@ -28,3 +22,11 @@ def create_map_values(array_size,dictionary,map):
         else:
             map_val[i] = dictionary.get(map[i])
     return map_val
+
+def vertice_caminho(no):
+  caminho = []
+  while no.no_pai is not None:
+    no = no.no_pai
+    if no.vertice is not None: caminho.append(no.vertice)
+  caminho.reverse()
+  return caminho
