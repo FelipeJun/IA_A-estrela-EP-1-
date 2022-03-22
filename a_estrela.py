@@ -1,3 +1,4 @@
+from tkinter.tix import NoteBook
 from no import No
 import heapq
 import numpy as np
@@ -26,12 +27,17 @@ def a_estrela(estado_inicial, testar_objetivo, gerar_sucessores, heuristica, cus
       if movimento == None: 
         movimento = no
       else:
-        if no.total < movimento.total:
+        if no.estado[-1] == 0:
           movimento = no
-    custo_total += movimento.custo
-    saida[0] = custo_total
-    saida[1].append(movimento.vertice)
-    fila.push(movimento)
+        elif no.total < movimento.total:
+          movimento = no
+    try:
+      custo_total += movimento.custo
+      saida[0] = custo_total
+      saida[1].append(movimento.vertice)
+      fila.push(movimento)
+    except:
+      return None
   return None
 
 class FilaPrioridade:

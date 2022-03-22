@@ -69,35 +69,6 @@ class Jogo:
             sucessor[posicao + 1] = 0
             return (tuple(sucessor), "➡️",estado_atual[(posicao + 1)])
 
-    # def _cima_direita(self, posicao, estado_atual):
-    #     direita = []
-    #     for i in range(len(map)):
-    #         if (i + 1) % N == 0 :
-    #             direita.append(i)
-    #     cima = []
-    #     for i in range(len(map)):
-    #         if 0 <= i < N:
-    #             cima.append(i)
-    #     if (posicao not in cima and posicao not in direita) and 0 < estado_atual[posicao - (N - 1)] :
-    #         sucessor = list(estado_atual)
-    #         sucessor[posicao] = -2
-    #         sucessor[posicao - (N - 1)] = 0
-    #         return (tuple(sucessor), "Cima-direita",estado_atual[posicao - (N - 1)])
-    # def _cima_esquerda(self, posicao, estado_atual):
-    #     cima = []
-    #     for i in range(len(map)):
-    #         if 0 <= i < N:
-    #             cima.append(i)
-    #     esquerda = []
-    #     for i in range(len(map)):
-    #         if i == 0 or i % N == 0:
-    #             esquerda.append(i)
-    #     if (posicao not in cima and posicao not in esquerda) and 0 < estado_atual[posicao - (N + 1)]:
-    #         sucessor = list(estado_atual)
-    #         sucessor[posicao] = -2
-    #         sucessor[posicao - (N + 1)] = 0
-    #         return (tuple(sucessor), "Cima-Esquerda",estado_atual[posicao - (N + 1)])
-
     def manhattan(self, estado):
         map_matrix = np.reshape(estado, (M, N))
         x = 0
@@ -113,20 +84,7 @@ class Jogo:
     #                             |xi-M-1| + |yi-N-1|
     def distancia_manhattan(self,i, j):
         return abs(i-(M - 1))+abs(j-(N - 1))
-    
-    # def euclidiana(self,estado):
-    #     map_matrix = np.reshape(estado, (M, N))
-    #     x = 0
-    #     y = 0
-    #     for i in range(len(map_matrix)):
-    #         for j in range(len(map_matrix[i])):
-    #             if map_matrix[i][j] == 0:
-    #                 x = i
-    #                 y = j
-    #     return self.distancia_euclidiana(x,y)
 
-    # def distancia_euclidiana(self,i, j):
-    #     return sqrt((i - (M-1))**2 + (j - (N - 1)**2))
 
     def custo(self, estado_origem, estado_destino):
         return estado_origem + estado_destino
@@ -149,17 +107,9 @@ if __name__ == "__main__":
                             g.custo,
                             M,
                             N)
-
-    # euclidiana = a_estrela(map_values, 
-    #                         g.testar_objetivo, 
-    #                         g.gerar_sucessores, 
-    #                         g.euclidiana,
-    #                         g.custo)
-
     if(Manhattan is None):
         print("Não houve solução ao problema")
     else:
         print("Solução:")
-        # print(vertice_caminho(Manhattan))
         print("Custo total dos terrenos: " + str(Manhattan[0]))
         print("Vértices: " + str(Manhattan[1]))
